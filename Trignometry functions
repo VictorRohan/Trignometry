@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <string.h>
+
+double parse_trig_expression(char *expression) {
+    char function[10];
+    double angle;
+
+    sscanf(expression, "%s %lf", function, &angle);
+
+    if (strcmp(function, "sin") == 0) {
+        return sin(angle);
+    } else if (strcmp(function, "cos") == 0) {
+        return cos(angle);
+    } else if (strcmp(function, "tan") == 0) {
+        return tan(angle);
+    } else if (strcmp(function, "cot") == 0) {
+        return 1.0 / tan(angle);
+    } else if (strcmp(function, "sec") == 0) {
+        return 1.0 / cos(angle);
+    } else if (strcmp(function, "csc") == 0) {
+        return 1.0 / sin(angle);
+    } else {
+        printf("Error: Invalid trigonometric function\n");
+        return 0.0;
+    }
+}
+
+int main() {
+    char expression[100];
+    while(1)
+    {
+    printf("Enter a trigonometric expression (e.g., sin 45, cos 30): ");
+    fgets(expression, sizeof(expression), stdin);
+
+    double result = parse_trig_expression(expression);
+    printf("Result: %f\n", result);
+}
+    return 0;
+}
+
